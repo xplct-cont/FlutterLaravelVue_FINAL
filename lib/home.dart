@@ -83,7 +83,7 @@ class _HomepageState extends State<Homepage> {
     print(response.statusCode);
 
     final responseShow = await http
-        .get(Uri.parse('http://192.168.1.4:8000/api/bookings/$id'));
+        .get(Uri.parse('http://192.168.1.4/api/bookings/$id'));
     print(responseShow.body);
 
     if (response.statusCode == 200) {
@@ -144,18 +144,7 @@ class _HomepageState extends State<Homepage> {
                             primary:Colors.green.shade700
                         ),
                         child: Text('Create', style: TextStyle(color: Colors.white))),
-                    ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            update(1);
-                          },
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary:Colors.orange
 
-                        ),
-                        child: Text('Update', style: TextStyle(color: Colors.white))),
 
                     ElevatedButton(
                       child: Text('Operators', style: TextStyle(color: Colors.white)),
@@ -291,9 +280,10 @@ class _HomepageState extends State<Homepage> {
                             ),
 
                          Container(
-                              width: 100,
+                              width: 150,
 
                               child: Row(
+
                                 children: [
                                   IconButton(
                                       onPressed: () {
@@ -310,6 +300,15 @@ class _HomepageState extends State<Homepage> {
 
                                       },
                                       icon: Icon(Icons.edit,), color: Colors.orange,),
+
+                                  IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        update(data[index]['id']);
+                                      });
+                                    },
+                                    icon: Icon(Icons.refresh), color: Colors.white,),
+
                                   IconButton(
                                       onPressed: () {
                                         setState(() {
@@ -317,6 +316,7 @@ class _HomepageState extends State<Homepage> {
                                         });
                                       },
                                       icon: Icon(Icons.delete), color: Colors.red,),
+
                                 ],
                               ),
                             ),
@@ -469,16 +469,7 @@ class _SecondRouteState extends State<SecondRoute> {
                                 primary:Colors.green.shade700
                             ),
                             child: Text('Create', style: TextStyle(color: Colors.white))),
-                        ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                update(1);
-                              });
-                            },
-                            style: ElevatedButton.styleFrom(
-                                primary:Colors.orange
-                            ),
-                            child: Text('Update', style: TextStyle(color: Colors.white))),
+
 
                         ElevatedButton(
                           child: Text('Bookings', style: TextStyle(color: Colors.white)),
@@ -574,7 +565,7 @@ class _SecondRouteState extends State<SecondRoute> {
                                         ],
                                       ),
                                       Container(
-                                        width: 100,
+                                        width: 150,
 
                                         child: Row(
                                           children: [
@@ -590,6 +581,17 @@ class _SecondRouteState extends State<SecondRoute> {
 
                                               },
                                               icon: Icon(Icons.edit,), color: Colors.orange,),
+
+
+                                            IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  update(data[index]['id']);
+                                                });
+                                              },
+                                              icon: Icon(Icons.refresh), color: Colors.white,),
+
+
                                             IconButton(
                                               onPressed: () {
                                                 setState(() {
