@@ -6,7 +6,7 @@ class Createddata {
 
   Future datacreated(point_of_origintext, destinationtext, passenger_nametext, agetext, contact_notext) async {
     final response =
-    await http.post(Uri.parse('http://192.168.1.4:8000/api/bookings'),
+    await http.post(Uri.parse('http://192.168.1.2:8000/api/bookings'),
         body: jsonEncode({
           "point_of_origin":point_of_origintext,
           "destination": destinationtext,

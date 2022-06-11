@@ -36,7 +36,7 @@ class _HomepageState extends State<Homepage> {
   String? id;
   Future retrieve() async {
     final response =
-    await http.get(Uri.parse('http://192.168.1.4:8000/api/bookings'));
+    await http.get(Uri.parse('http://192.168.1.2:8000/api/bookings'));
     if (response.statusCode == 200) {
       setState(() {
         data = jsonDecode(response.body);
@@ -49,12 +49,12 @@ class _HomepageState extends State<Homepage> {
 
   Future delete(id) async {
     final response = await http
-        .delete(Uri.parse('http://192.168.1.4:8000/api/bookings/$id'));
+        .delete(Uri.parse('http://192.168.1.2:8000/api/bookings/$id'));
     print('outside');
     print(response.statusCode);
 
     final responseShow = await http
-        .get(Uri.parse('http://192.168.1.4:8000/api/bookings/$id'));
+        .get(Uri.parse('http://192.168.1.2:8000/api/bookings/$id'));
     print(responseShow.body);
 
     if (response.statusCode == 200) {
@@ -67,7 +67,7 @@ class _HomepageState extends State<Homepage> {
 
   Future update(id) async {
     final response = await http
-        .put(Uri.parse('http://192.168.1.4:8000/api/bookings/$id'),
+        .put(Uri.parse('http://192.168.1.2:8000/api/bookings/$id'),
         body: jsonEncode({
           "point_of_origin": point_of_originController.text,
           "destination": destinationController.text,
@@ -83,7 +83,7 @@ class _HomepageState extends State<Homepage> {
     print(response.statusCode);
 
     final responseShow = await http
-        .get(Uri.parse('http://192.168.1.4/api/bookings/$id'));
+        .get(Uri.parse('http://192.168.1.2:8000/api/bookings/$id'));
     print(responseShow.body);
 
     if (response.statusCode == 200) {
@@ -111,12 +111,72 @@ class _HomepageState extends State<Homepage> {
 
       child: Scaffold(
       resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.cyan,
-        title: Text('Online Bus System', style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.white,
+        title: Text('Online Bus System', style: TextStyle(color: Colors.black54),),
         centerTitle: true,
 
+        flexibleSpace: Container(
+          margin: EdgeInsets.only(left:320.0, top: 27.0),
+          height: 50,
+          decoration:BoxDecoration(
+            image:DecorationImage(
+              image: AssetImage('assets/path1281.png')
+            )
+          )
+        ),
+
+
+      ),drawer:Drawer(
+        backgroundColor: Colors.white,
+        child: ListView(
+           padding: EdgeInsets.only(top: 30.0, left: 10.0),
+          children: [
+
+            Card(
+              color: Colors.cyan.shade400,
+              elevation: 8,
+              child:ListTile(
+                leading: Icon(Icons.book, color: Colors.red,),
+                title: const Text('Bookings', style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20.0,
+                  color: Colors.white, ),),
+                onTap: (){
+                  Navigator.push(
+                    context, MaterialPageRoute(builder: (context) =>
+                      Homepage()),
+                  );
+
+                },
+              ),
+
+            ),
+
+
+
+
+            Card(
+            color: Colors.cyan.shade400,
+            elevation: 8,
+            child:ListTile(
+              leading: Icon(Icons.speed, color: Colors.red,),
+              title: const Text('Operators', style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20.0,
+                  color: Colors.white, ),),
+              onTap: (){
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) =>
+                    SecondRoute()),
+
+                );
+              },
+             )
+            ),
+
+          ],
+
+        ),
       ),
+
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -124,9 +184,20 @@ class _HomepageState extends State<Homepage> {
             child: Column(
               children: [
 
+
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+
+                    Image.asset('assets/image1933.png', height: 45.0, width: 45.0,),
+
+                    Text(
+                        'BOOKINGS', style: TextStyle(
+                          fontSize: 25.0, color: Colors.black87,
+                     ),
+                    ),
+
+
                     ElevatedButton(
                         onPressed: () {
                           setState(() {
@@ -145,21 +216,10 @@ class _HomepageState extends State<Homepage> {
                         ),
                         child: Text('Create', style: TextStyle(color: Colors.white))),
 
-
-                    ElevatedButton(
-                      child: Text('Operators', style: TextStyle(color: Colors.white)),
-                        onPressed: () {
-                          Navigator.push(
-                            context, MaterialPageRoute(builder: (context) =>
-                              SecondRoute()),
-
-                          );
-                        },
-                    )
                   ],
                 ),
 
-                Card(elevation: 3,
+                Card(elevation: 8,
                  margin: EdgeInsets.only(top: 1.0),
                   child: Column(
                     children: <Widget>[
@@ -168,7 +228,13 @@ class _HomepageState extends State<Homepage> {
                       TextField(
                         controller: point_of_originController,
                         decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          filled: true,
+                          hintStyle: TextStyle(color: Colors.grey[800]),
                           hintText: 'Point of Origin',
+                          fillColor: Colors.white70
                         ),
                       ),
 
@@ -176,28 +242,53 @@ class _HomepageState extends State<Homepage> {
                       TextField(
                         controller: destinationController,
                         decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          filled: true,
+                          hintStyle: TextStyle(color: Colors.grey[800]),
                           hintText: 'Destination',
+                          fillColor: Colors.white70
+
                         ),
                       ),
 
                       TextField(
                         controller: passenger_nameController,
                         decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          filled: true,
+                          hintStyle: TextStyle(color: Colors.grey[800]),
                           hintText: 'Passenger Name',
+                            fillColor: Colors.white70
                         ),
                       ),
 
                       TextField(
                         controller: ageController,
                         decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          filled: true,
+                          hintStyle: TextStyle(color: Colors.grey[800]),
                           hintText: 'Age',
+                          fillColor: Colors.white70
                         ),
                       ),
 
                       TextField(
                         controller: contact_noController,
                         decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          filled: true,
+                          hintStyle: TextStyle(color: Colors.grey[800]),
                           hintText: 'Contact No',
+                          fillColor: Colors.white70
                         ),
                       ),
 
@@ -368,7 +459,7 @@ class _SecondRouteState extends State<SecondRoute> {
   String? id;
   Future retrieve() async {
     final response =
-    await http.get(Uri.parse('http://192.168.1.4:8000/api/operators'));
+    await http.get(Uri.parse('http://192.168.1.2:8000/api/operators'));
     if (response.statusCode == 200) {
       setState(() {
         data = jsonDecode(response.body);
@@ -381,12 +472,12 @@ class _SecondRouteState extends State<SecondRoute> {
 
   Future delete(id) async {
     final response = await http
-        .delete(Uri.parse('http://192.168.1.4:8000/api/operators/$id'));
+        .delete(Uri.parse('http://192.168.1.2:8000/api/operators/$id'));
     print('outside');
     print(response.statusCode);
 
     final responseShow = await http
-        .get(Uri.parse('http://192.168.1.4:8000/api/operators/$id'));
+        .get(Uri.parse('http://192.168.1.2:8000/api/operators/$id'));
     print(responseShow.body);
 
     if (response.statusCode == 200) {
@@ -399,7 +490,7 @@ class _SecondRouteState extends State<SecondRoute> {
 
   Future update(id) async {
     final response = await http
-        .put(Uri.parse('http://192.168.1.4:8000/api/operators/$id'),
+        .put(Uri.parse('http://192.168.1.2:8000/api/operators/$id'),
         body: jsonEncode({
           "operator_name": operator_nameController.text,
           "address": addressController.text,
@@ -412,7 +503,7 @@ class _SecondRouteState extends State<SecondRoute> {
     print(response.statusCode);
 
     final responseShow = await http
-        .get(Uri.parse('http://192.168.1.4:8000/api/operators/$id'));
+        .get(Uri.parse('http://192.168.1.2:8000/api/operators/$id'));
     print(responseShow.body);
 
     if (response.statusCode == 200) {
@@ -439,11 +530,70 @@ class _SecondRouteState extends State<SecondRoute> {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            backgroundColor: Colors.cyan,
-            title: Text('Online Bus System', style: TextStyle(color: Colors.white),),
+            backgroundColor: Colors.white,
+            title: Text('Online Bus System', style: TextStyle(color: Colors.black54),),
             centerTitle: true,
 
+            flexibleSpace: Container(
+                margin: EdgeInsets.only(left:320.0, top: 27.0),
+                height: 50,
+                decoration:BoxDecoration(
+                    image:DecorationImage(
+                        image: AssetImage('assets/path1281.png')
+                    )
+                )
+            ),
+
           ),
+
+          drawer:Drawer(
+            backgroundColor: Colors.white,
+            child: ListView(
+              padding: EdgeInsets.only(top: 30.0, left: 10.0),
+              children: [
+
+                Card(
+                    color: Colors.cyan.shade400,
+                    elevation: 8,
+                    child:ListTile(
+                      leading: Icon(Icons.book, color: Colors.red,),
+                      title: const Text('Bookings', style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20.0,
+                        color: Colors.white, ),),
+                      onTap: (){
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) =>
+                            Homepage()),
+                        );
+                      },
+                    ),
+                ),
+
+                Card(
+                  color: Colors.cyan.shade400,
+                  elevation: 8,
+                  child:ListTile(
+                    leading: Icon(Icons.speed, color: Colors.red,),
+                    title: const Text('Operators', style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20.0,
+                      color: Colors.white, ),),
+                    onTap: (){
+                      Navigator.push(
+                        context, MaterialPageRoute(builder: (context) =>
+                          SecondRoute()),
+                      );
+
+                    },
+                  ),
+
+                ),
+
+              ],
+
+            ),
+          ),
+
+
+
+
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(20),
@@ -452,8 +602,19 @@ class _SecondRouteState extends State<SecondRoute> {
                   children: [
 
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+
+                        Image.asset('assets/image17.png', height: 45.0, width: 45.0,),
+
+                        Text(
+                          'OPERATORS', style: TextStyle(
+                          fontSize: 25.0, color: Colors.black87,
+                        ),
+                        ),
+
+
+
                         ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -470,17 +631,10 @@ class _SecondRouteState extends State<SecondRoute> {
                             ),
                             child: Text('Create', style: TextStyle(color: Colors.white))),
 
-
-                        ElevatedButton(
-                          child: Text('Bookings', style: TextStyle(color: Colors.white)),
-                          onPressed: () {
-                             Navigator.pop(context);
-                               },
-                        )
                       ],
                     ),
 
-                    Card(elevation: 3,
+                    Card(elevation: 8,
                       margin: EdgeInsets.only(top: 1.0),
                       child: Column(
                         children: <Widget>[
@@ -489,7 +643,13 @@ class _SecondRouteState extends State<SecondRoute> {
                           TextField(
                             controller: operator_nameController,
                             decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0)
+                              ),
+                              filled: true,
+                              hintStyle: TextStyle(color: Colors.grey[800]),
                               hintText: 'Operator Name',
+                              fillColor: Colors.white70
                             ),
                           ),
 
@@ -497,14 +657,26 @@ class _SecondRouteState extends State<SecondRoute> {
                           TextField(
                             controller: addressController,
                             decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0)
+                              ),
+                              filled: true,
+                              hintStyle: TextStyle(color: Colors.grey[800]),
                               hintText: 'Address',
+                              fillColor: Colors.white70
                             ),
                           ),
 
                           TextField(
                             controller: contact_noController,
                             decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0)
+                              ),
+                              filled: true,
+                              hintStyle: TextStyle(color: Colors.grey[800]),
                               hintText: 'Contact No',
+                              fillColor: Colors.white70
                             ),
                           ),
 
@@ -621,7 +793,7 @@ class CreateOperator {
 
   Future operatorCreated(operator_nametext, addresstext, contact_notext) async {
     final response =
-    await http.post(Uri.parse('http://192.168.1.4:8000/api/operators'),
+    await http.post(Uri.parse('http://192.168.1.2:8000/api/operators'),
         body: jsonEncode({
           "operator_name":operator_nametext,
           "address": addresstext,
@@ -641,6 +813,5 @@ class CreateOperator {
       print('Error creating data');
     }
   }
-
 }
 
