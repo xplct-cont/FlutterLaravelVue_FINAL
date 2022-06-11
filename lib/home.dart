@@ -224,73 +224,89 @@ class _HomepageState extends State<Homepage> {
                   child: Column(
                     children: <Widget>[
 
+                      Wrap(
+                         spacing: 3,
+                        runSpacing: 3,
+                        children: <Widget>[
 
-                      TextField(
-                        controller: point_of_originController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
+                          TextField(
+                            controller: point_of_originController,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+
+
+
+                                ),contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                                filled: true,
+                                hintStyle: TextStyle(color: Colors.grey[800]),
+                                hintText: 'Point of Origin',
+                                fillColor: Colors.white70
+                            ),
                           ),
-                          filled: true,
-                          hintStyle: TextStyle(color: Colors.grey[800]),
-                          hintText: 'Point of Origin',
-                          fillColor: Colors.white70
-                        ),
+
+
+                          TextField(
+                            controller: destinationController,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                                filled: true,
+                                hintStyle: TextStyle(color: Colors.grey[800]),
+                                hintText: 'Destination',
+                                fillColor: Colors.white70
+
+                            ),
+                          ),
+
+                          TextField(
+                            controller: passenger_nameController,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                                filled: true,
+                                hintStyle: TextStyle(color: Colors.grey[800]),
+                                hintText: 'Passenger Name',
+                                fillColor: Colors.white70
+                            ),
+                          ),
+
+                          TextField(
+                            controller: ageController,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                                filled: true,
+                                hintStyle: TextStyle(color: Colors.grey[800]),
+                                hintText: 'Age',
+                                fillColor: Colors.white70
+                            ),
+                          ),
+
+                          TextField(
+                            controller: contact_noController,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                                filled: true,
+                                hintStyle: TextStyle(color: Colors.grey[800]),
+                                hintText: 'Contact No',
+                                fillColor: Colors.white70
+                            ),
+                          ),
+
+                        ],
                       ),
 
 
-                      TextField(
-                        controller: destinationController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          filled: true,
-                          hintStyle: TextStyle(color: Colors.grey[800]),
-                          hintText: 'Destination',
-                          fillColor: Colors.white70
-
-                        ),
-                      ),
-
-                      TextField(
-                        controller: passenger_nameController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          filled: true,
-                          hintStyle: TextStyle(color: Colors.grey[800]),
-                          hintText: 'Passenger Name',
-                            fillColor: Colors.white70
-                        ),
-                      ),
-
-                      TextField(
-                        controller: ageController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          filled: true,
-                          hintStyle: TextStyle(color: Colors.grey[800]),
-                          hintText: 'Age',
-                          fillColor: Colors.white70
-                        ),
-                      ),
-
-                      TextField(
-                        controller: contact_noController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          filled: true,
-                          hintStyle: TextStyle(color: Colors.grey[800]),
-                          hintText: 'Contact No',
-                          fillColor: Colors.white70
-                        ),
-                      ),
 
 
                     ],
@@ -639,6 +655,11 @@ class _SecondRouteState extends State<SecondRoute> {
                       child: Column(
                         children: <Widget>[
 
+                        Wrap(
+                        spacing: 3,
+                        runSpacing: 3,
+                        children: <Widget>[
+
 
                           TextField(
                             controller: operator_nameController,
@@ -646,6 +667,7 @@ class _SecondRouteState extends State<SecondRoute> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)
                               ),
+                                contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
                               filled: true,
                               hintStyle: TextStyle(color: Colors.grey[800]),
                               hintText: 'Operator Name',
@@ -660,6 +682,7 @@ class _SecondRouteState extends State<SecondRoute> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0)
                               ),
+                                contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
                               filled: true,
                               hintStyle: TextStyle(color: Colors.grey[800]),
                               hintText: 'Address',
@@ -673,13 +696,15 @@ class _SecondRouteState extends State<SecondRoute> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0)
                               ),
+                                contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
                               filled: true,
                               hintStyle: TextStyle(color: Colors.grey[800]),
                               hintText: 'Contact No',
                               fillColor: Colors.white70
                             ),
                           ),
-
+                          ]
+                         )
                         ],
                       ),
                     ),
